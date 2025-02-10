@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "Divoké Kmeny Extension",
+    "version": "1.0",
+    "description": "Rozšíření pro Divoké Kmeny s více moduly.",
+    "permissions": ["storage", "activeTab", "scripting"],
+    "background": {
+      "service_worker": "core/updater.js"
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://*.divokekmeny.*/*"],
+        "js": ["modules/farm-assistant.js"]
+      }
+    ]
+  }
+  
