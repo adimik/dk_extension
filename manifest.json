@@ -1,17 +1,22 @@
 {
-    "manifest_version": 3,
-    "name": "Divoké Kmeny Extension",
-    "version": "1.0",
-    "description": "Rozšíření pro Divoké Kmeny s více moduly.",
-    "permissions": ["storage", "activeTab", "scripting"],
-    "background": {
-      "service_worker": "core/updater.js"
-    },
-    "content_scripts": [
-      {
-        "matches": ["https://*.divokekmeny.*/*"],
-        "js": ["modules/farm-assistant.js"]
-      }
-    ]
+  "manifest_version": 2,
+  "name": "Divoké Kmeny Extension",
+  "version": "1.0",
+  "description": "Rozšíření pro Divoké Kmeny s více moduly.",
+  "permissions": ["storage", "activeTab"],
+  "background": {
+    "scripts": ["core/updater.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.divokekmeny.cz/*", "https://*.divokekmeny.sk/*"],
+      "js": ["modules/auto_scaveng.js"]
+    }
+  ],
+  "applications": {
+    "gecko": {
+      "id": "moje-rozsireni@firefox"
+    }
   }
-  
+}

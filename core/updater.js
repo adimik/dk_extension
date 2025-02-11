@@ -7,7 +7,9 @@
         try {
             const response = await fetch(mod.url);
             const newScript = await response.text();
-            eval(newScript);  // Dynamické načtení a spuštění
+            const scriptElement = document.createElement('script');
+            scriptElement.textContent = newScript;
+            document.head.appendChild(scriptElement);
             console.log(`Načten nejnovější modul: ${mod.name}`);
         } catch (error) {
             console.error(`Chyba při aktualizaci modulu ${mod.name}:`, error);
