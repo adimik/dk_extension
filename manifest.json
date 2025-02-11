@@ -1,11 +1,12 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "Divoké Kmeny Extension",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Rozšíření pro Divoké Kmeny s více moduly.",
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": ["storage", "activeTab"],
   "background": {
-    "service_worker": "core/updater.js"
+    "scripts": ["core/updater.js"],
+    "persistent": false
   },
   "content_scripts": [
     {
@@ -13,6 +14,15 @@
       "js": ["modules/auto_scaveng.js"]
     }
   ],
-  "host_permissions": ["https://*.githubusercontent.com/*"],
-  "update_url": "https://your-github-repo-url/updates.xml"
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_title": "Zkontrolovat aktualizace",
+    "default_popup": "popup.html"
+  },
+  "applications": {
+    "gecko": {
+      "id": "moje-rozsireni@firefox",
+      "update_url": "https://raw.githubusercontent.com/adimik/dk_extension/main/updates.json"
+    }
+  }
 }

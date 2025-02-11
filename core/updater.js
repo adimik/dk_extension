@@ -1,21 +1,28 @@
-(async function() {
-    const modules = [
-        { name: 'auto_scaveng.js', url: 'https://raw.githubusercontent.com/adimik/dk_extension/main/modules/auto_scaveng.js' }
-    ];
+console.log("Updater je aktivní!");
 
-    for (let mod of modules) {
-        try {
-            const response = await fetch(`${mod.url}?t=${new Date().getTime()}`);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const newScript = await response.text();
-            const scriptElement = document.createElement('script');
-            scriptElement.textContent = newScript;
-            document.head.appendChild(scriptElement);
-            console.log(`Načten nejnovější modul: ${mod.name}`);
-        } catch (error) {
-            console.error(`Chyba při aktualizaci modulu ${mod.name}:`, error);
-        }
-    }
-})();
+function zkontrolovatAktualizaci() {
+  fetch("https://raw.githubusercontent.com/adimik/dk_extension/main/updates.json")
+    .then(response => response.json())
+    .then(data => {
+      const aktualniVerze = browser.runtime.getManifest().version;
+      const novaVerze = data.addons["moje-rozsireni@firefox"].updates[0].version;
+
+      if (novaVerze !== aktualniVerze) {
+        console.log(`Dostupná nová verze: ${novaVerze}`);
+        browser.runtime.sendMessage({ action: "new_update", version: novaVerze });
+        browser.runtime.reload();
+      } else {
+        console.log("Žádné nové aktualizace.");
+      }
+    })
+    .catch(error => console.error("Chyba při kontrole aktualizace:", error));
+}
+
+// Automatická kontrola každé 3 minuty (180 000 ms)
+setInterval(zkontrolovatAktualizaci, 180000);
+
+// Ruční kontrola přes kliknutí na ikonu
+browser.browserAction.onClicked.addListener(() => {
+  console.log("Ruční kontrola aktualizace...");
+  zkontrolovatAktualizaci();
+});

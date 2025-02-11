@@ -1,0 +1,13 @@
+{
+    "addons": {
+      "moje-rozsireni@firefox": {
+        "updates": [
+          {
+            "version": "1.2",
+            "update_link": "https://raw.githubusercontent.com/adimik/dk_extension/main/dk_extension.xpi"
+          }
+        ]
+      }
+    }
+  }
+  

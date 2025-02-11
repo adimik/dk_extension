@@ -1,2 +1,2 @@
-console.log("Farm Assistant modul je aktivní! Test updatu 2.0");
+console.log("Farm Assistant modul je aktivní! Test updatu 2.1");
 
