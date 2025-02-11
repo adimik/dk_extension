@@ -5,7 +5,10 @@
 
     for (let mod of modules) {
         try {
-            const response = await fetch(mod.url);
+            const response = await fetch(`${mod.url}?t=${new Date().getTime()}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
             const newScript = await response.text();
             const scriptElement = document.createElement('script');
             scriptElement.textContent = newScript;
