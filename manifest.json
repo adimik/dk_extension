@@ -3,17 +3,15 @@
   "name": "Divoké Kmeny Extension",
   "version": "1.0",
   "description": "Rozšíření pro Divoké Kmeny s více moduly.",
-  "permissions": ["storage", "activeTab"],
+  "permissions": [
+    "storage",
+    "activeTab",
+    "https://raw.githubusercontent.com/*"
+  ],
   "background": {
     "scripts": ["core/updater.js"],
     "persistent": false
   },
-  "content_scripts": [
-    {
-      "matches": ["https://*.divokekmeny.cz/*", "https://*.divokekmeny.sk/*"],
-      "js": ["modules/auto_scaveng.js"]
-    }
-  ],
   "applications": {
     "gecko": {
       "id": "moje-rozsireni@firefox"
