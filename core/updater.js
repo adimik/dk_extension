@@ -1,6 +1,6 @@
 (async function() {
     const modules = [
-        { name: 'auto_scaveng.js', url: 'https://raw.githubusercontent.com/adimik/dk_extension/main/modules/auto_scavenge.js' }
+        { name: 'auto_scaveng.js', url: 'https://raw.githubusercontent.com/adimik/dk_extension/main/modules/auto_scaveng.js' }
     ];
 
     for (let mod of modules) {
