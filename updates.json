@@ -3,7 +3,7 @@
       "moje-rozsireni@firefox": {
         "updates": [
           {
-            "version": "1.9",
+            "version": "2.0",
             "update_link": "https://raw.githubusercontent.com/adimik/dk_extension/main/dk_extension.xpi"
           }
         ]
